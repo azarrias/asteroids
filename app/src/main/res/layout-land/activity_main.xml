@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_buttons">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        app:fontFamily="serif-monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btn_start"
+                style="@android:style/Widget.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_start_txt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+            <Button
+                android:id="@+id/btn_setup"
+                style="@android:style/Widget.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_setup_txt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btn_about"
+                style="@android:style/Widget.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_about_txt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+            <Button
+                android:id="@+id/btn_exit"
+                style="@android:style/Widget.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_exit_txt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+        </TableRow>
+
+    </TableLayout>
+</android.support.constraint.ConstraintLayout>
