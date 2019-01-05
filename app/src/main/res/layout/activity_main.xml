@@ -1,40 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name" />
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        app:fontFamily="serif-monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="match_parent"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_start_txt" />
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/btn_start_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btn_setup"
-        android:layout_width="match_parent"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_setup_txt" />
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_setup_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        app:layout_constraintEnd_toEndOf="@+id/btn_start"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_start"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
     <Button
         android:id="@+id/btn_about"
-        android:layout_width="match_parent"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_about_txt" />
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_about_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        app:layout_constraintEnd_toEndOf="@+id/btn_start"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_start"
+        app:layout_constraintTop_toBottomOf="@+id/btn_setup" />
 
     <Button
         android:id="@+id/btn_exit"
-        android:layout_width="match_parent"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_exit_txt" />
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_exit_txt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        app:layout_constraintEnd_toEndOf="@+id/btn_start"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_start"
+        app:layout_constraintTop_toBottomOf="@+id/btn_about" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
