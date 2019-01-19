@@ -52,7 +52,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:onClick="launchAbout"
         android:text="@string/btn_about_txt"
         app:layout_constraintEnd_toEndOf="@+id/btn_start"
         app:layout_constraintHorizontal_bias="0.0"

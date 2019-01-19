@@ -50,7 +50,6 @@
                 android:id="@+id/btn_about"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:onClick="launchAbout"
                 android:text="@string/btn_about_txt" />
 
             <Button
