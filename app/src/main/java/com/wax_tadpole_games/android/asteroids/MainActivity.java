@@ -9,16 +9,26 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnAbout;
+    private Button btnExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btnAbout = findViewById(R.id.btn_about);
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchAbout(null);
+            }
+        });
+
+        btnExit = findViewById(R.id.btn_exit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
