@@ -7,11 +7,19 @@
     <item android:id="@+id/action_settings"
         android:title="Preferences"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+        android:orderInCategory="5"
+        app:showAsAction="never" />
 
     <item android:id="@+id/about"
         android:title="About..."
-        android:icon="@android:drawable/ic_menu_info_details"/>
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:orderInCategory="10"
+        app:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_search"
+        android:title="Search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="115"
+        app:showAsAction="always|collapseActionView" />
 
 </menu>
