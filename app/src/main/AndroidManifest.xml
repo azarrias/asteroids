@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity"
-            android:label="About ..."
+            android:label="About..."
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
     </application>
