@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnAbout;
     private Button btnExit;
+    private Button btnSetup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 launchAbout(null);
+            }
+        });
+
+        btnSetup = findViewById(R.id.btn_setup);
+        btnSetup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchPreferences(null);
             }
         });
 
@@ -40,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void launchPreferences(View view) {
+        Intent i = new Intent(this, PreferencesActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -50,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            launchPreferences(null);
             return true;
         }
         if (id == R.id.about) {
