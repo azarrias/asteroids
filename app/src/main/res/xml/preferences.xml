@@ -18,8 +18,27 @@
     <EditTextPreference
         android:key="fragments"
         android:title="Number of fragments"
-        android:summary="How many pieces is an asteroid divided in?"
+        android:summary="Number of pieces an asteroid is divided into"
         android:inputType="number"
         android:defaultValue="3"/>
+
+    <PreferenceCategory
+        android:title="Multiplayer mode">
+        <CheckBoxPreference
+            android:key="multiplayer"
+            android:title="Enable multiplayer"/>
+        <EditTextPreference
+            android:key="max_players"
+            android:title="Maximum number of players"
+            android:inputType="number"
+            android:defaultValue="3"/>
+        <ListPreference
+            android:key="connection_type"
+            android:title="Type of connection"
+            android:entries="@array/typeConnection"
+            android:entryValues="@array/typeConnectionValues"
+            android:defaultValue="1"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
