@@ -4,7 +4,5 @@
     <string name="btn_setup_txt">Set up</string>
     <string name="btn_about_txt">About</string>
     <string name="btn_exit_txt">Quit</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_highscore_txt">Highscores</string>
 </resources>
