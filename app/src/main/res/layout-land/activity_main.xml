@@ -53,11 +53,23 @@
                 android:text="@string/btn_about_txt" />
 
             <Button
+                android:id="@+id/btn_highscore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_highscore_txt" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+
+            <Button
                 android:id="@+id/btn_exit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_exit_txt" />
-
         </TableRow>
 
     </TableLayout>

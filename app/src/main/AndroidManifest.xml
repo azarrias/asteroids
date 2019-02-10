@@ -19,8 +19,9 @@
         <activity
             android:name=".AboutActivity"
             android:label="About..."
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
-        <activity android:name=".PreferencesActivity"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".PreferencesActivity" />
+        <activity android:name=".HighscoreActivity"></activity>
     </application>
 
 </manifest>

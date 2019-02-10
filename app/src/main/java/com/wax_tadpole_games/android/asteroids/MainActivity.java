@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAbout;
     private Button btnExit;
     private Button btnSetup;
+    private Button btnHighscore;
+    public static IHighscoreDAO highscores = new HighscoreDAOList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnHighscore = findViewById(R.id.btn_highscore);
+        btnHighscore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchHighscores(null);
+            }
+        });
+
         btnExit = findViewById(R.id.btn_exit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void launchHighscores(View view) {
+        Intent i = new Intent(this, HighscoreActivity.class);
+        startActivity(i);
     }
 
     private void showPreferences(View view) {

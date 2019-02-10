@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/hs_icon"
+        android:layout_width="?android:attr/listPreferredItemHeight"
+        android:layout_height="match_parent"
+        android:src="@drawable/asteroid2" />
+
+    <TextView
+        android:id="@+id/hs_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title placeholder"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintStart_toEndOf="@+id/hs_icon"
+        app:layout_constraintTop_toTopOf="@+id/hs_icon"
+        app:layout_constraintBottom_toTopOf="@+id/hs_subtitle"/>
+
+    <TextView
+        android:id="@+id/hs_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subtitle placeholder"
+        app:layout_constraintStart_toEndOf="@+id/hs_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_title"
+        app:layout_constraintBottom_toBottomOf="@+id/hs_icon" />
+</android.support.constraint.ConstraintLayout>
