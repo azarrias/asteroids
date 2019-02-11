@@ -15,6 +15,7 @@ class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.ViewHolder>
 
     private LayoutInflater inflater;
     private List<String> list;
+    protected View.OnClickListener onItemClickListener;
 
     public HighscoreAdapter(Context context, List<String> strings) {
         list = strings;
@@ -25,6 +26,7 @@ class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.ViewHolder>
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.item_highscore, parent, false);
+        v.setOnClickListener(onItemClickListener);
         return new ViewHolder(v);
     }
 
@@ -59,5 +61,9 @@ class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.ViewHolder>
             subtitle = itemView.findViewById(R.id.hs_subtitle);
             icon = itemView.findViewById(R.id.hs_icon);
         }
+    }
+
+    public void setOnItemClickListener(View.OnClickListener onClickListener) {
+        onItemClickListener = onClickListener;
     }
 }

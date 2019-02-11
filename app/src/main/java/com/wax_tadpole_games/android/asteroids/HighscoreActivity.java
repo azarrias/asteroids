@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 public class HighscoreActivity extends AppCompatActivity {
 
@@ -21,5 +23,15 @@ public class HighscoreActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        adapter.setOnItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = recyclerView.getChildAdapterPosition(v);
+                String s = MainActivity.highscores.hiscoreList(10).get(pos);
+                Toast.makeText(HighscoreActivity.this, "Clicked on: " + pos
+                    + " - " + s, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
