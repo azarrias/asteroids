@@ -21,7 +21,8 @@
             android:label="About..."
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".PreferencesActivity" />
-        <activity android:name=".HighscoreActivity"></activity>
+        <activity android:name=".HighscoreActivity" />
+        <activity android:name=".Game"></activity>
     </application>
 
 </manifest>

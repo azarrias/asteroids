@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showPreferences(v);
+                lauchGame(v);
             }
         });
         
@@ -80,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
                 + ", max_players: " + pref.getString("max_players", "?")
                 + ", connection_type: " + pref.getString("connection_type", "?");
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    private void lauchGame(View view) {
+        Intent i = new Intent(this, Game.class);
+        startActivity(i);
     }
 
     public void launchAbout(View view) {
