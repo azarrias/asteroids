@@ -5,8 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Game"
-    android:focusable="true"
-    android:background="@drawable/background">
+    tools:context=".Game" >
+    <com.wax_tadpole_games.android.asteroids.GameView
+        android:id="@+id/GameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:background="@drawable/background" />
 
 </LinearLayout>
