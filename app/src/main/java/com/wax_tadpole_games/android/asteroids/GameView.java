@@ -11,9 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameView extends View {
+
+    // Asteroids
     private List<Sprite> asteroids;
     private int numAsteroids = 5;
     private int numFragments = 3;
+
+    // Ship
+    private Sprite ship;
+    private int shipSpin;
+    private double shipAcceleration;
+    private static final int SHIP_MAX_VELOCITY = 20;
+    private static final int SHIP_SPIN_STEP = 5;
+    private static final float SHIP_ACCELERATION_STEP = 0.5f;
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -29,16 +39,20 @@ public class GameView extends View {
             asteroid.setRotation((int)(Math.random() * 8 - 4));
             asteroids.add(asteroid);
         }
+
+        drawableShip = ContextCompat.getDrawable(context, R.drawable.ship);
+        ship = new Sprite(this, drawableShip);
     }
 
     @Override
     protected void onSizeChanged(int width, int height, int prev_width, int prev_height) {
         super.onSizeChanged(width, height, prev_width, prev_height);
-
         for (Sprite asteroid : asteroids) {
             asteroid.setCenX((int)(Math.random() * width));
             asteroid.setCenY((int)(Math.random() * height));
         }
+        ship.setCenX(width / 2);
+        ship.setCenY(height / 2);
     }
 
     @Override
@@ -47,5 +61,6 @@ public class GameView extends View {
         for(Sprite asteroid : asteroids) {
             asteroid.renderSprite(canvas);
         }
+        ship.renderSprite(canvas);
     }
 }
