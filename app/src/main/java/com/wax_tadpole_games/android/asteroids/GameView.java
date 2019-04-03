@@ -47,12 +47,14 @@ public class GameView extends View {
     @Override
     protected void onSizeChanged(int width, int height, int prev_width, int prev_height) {
         super.onSizeChanged(width, height, prev_width, prev_height);
-        for (Sprite asteroid : asteroids) {
-            asteroid.setCenX((int)(Math.random() * width));
-            asteroid.setCenY((int)(Math.random() * height));
-        }
         ship.setCenX(width / 2);
         ship.setCenY(height / 2);
+        for (Sprite asteroid : asteroids) {
+            do {
+                asteroid.setCenX((int)(Math.random() * width));
+                asteroid.setCenY((int)(Math.random() * height));
+            } while (asteroid.distance(ship) < (width + height) / 5);
+        }
     }
 
     @Override
