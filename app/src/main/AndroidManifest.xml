@@ -22,7 +22,8 @@
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".PreferencesActivity" />
         <activity android:name=".HighscoreActivity" />
-        <activity android:name=".Game" android:screenOrientation="landscape" />
+        <activity android:name=".Game" android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>
