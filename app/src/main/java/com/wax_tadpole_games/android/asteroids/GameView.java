@@ -1,8 +1,15 @@
 package com.wax_tadpole_games.android.asteroids;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.PathShape;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -29,7 +36,33 @@ public class GameView extends View {
         super(context, attrs);
         Drawable drawableShip, drawableAsteroid, drawableMissile;
 
-        drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.asteroid1);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (pref.getString("graphics", "1").equals("0")) {
+            Path asteroidPath = new Path();
+            asteroidPath.moveTo((float)0.3, (float)0.0);
+            asteroidPath.lineTo((float)0.6, (float)0.0);
+            asteroidPath.lineTo((float)0.6, (float)0.3);
+            asteroidPath.lineTo((float)0.8, (float)0.2);
+            asteroidPath.lineTo((float)1.0, (float)0.4);
+            asteroidPath.lineTo((float)0.8, (float)0.6);
+            asteroidPath.lineTo((float)0.9, (float)0.9);
+            asteroidPath.lineTo((float)0.8, (float)1.0);
+            asteroidPath.lineTo((float)0.4, (float)1.0);
+            asteroidPath.lineTo((float)0.0, (float)0.6);
+            asteroidPath.lineTo((float)0.0, (float)0.2);
+            asteroidPath.lineTo((float)0.3, (float)0.0);
+            ShapeDrawable shapeDrawable = new ShapeDrawable(
+                    new PathShape(asteroidPath, 1, 1));
+            shapeDrawable.getPaint().setColor(Color.WHITE);
+            shapeDrawable.getPaint().setStyle(Paint.Style.STROKE);
+            shapeDrawable.setIntrinsicWidth(50);
+            shapeDrawable.setIntrinsicHeight(50);
+            drawableAsteroid = shapeDrawable;
+            setBackgroundColor(Color.BLACK);
+        } else {
+            drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.asteroid1);
+        }
+
         asteroids = new ArrayList<Sprite>();
         for (int i = 0; i < numAsteroids; i++) {
             Sprite asteroid = new Sprite(this, drawableAsteroid);
