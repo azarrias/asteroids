@@ -51,18 +51,34 @@ public class GameView extends View {
             asteroidPath.lineTo((float)0.0, (float)0.6);
             asteroidPath.lineTo((float)0.0, (float)0.2);
             asteroidPath.lineTo((float)0.3, (float)0.0);
-            ShapeDrawable shapeDrawable = new ShapeDrawable(
+            ShapeDrawable sdAsteroid = new ShapeDrawable(
                     new PathShape(asteroidPath, 1, 1));
-            shapeDrawable.getPaint().setColor(Color.WHITE);
-            shapeDrawable.getPaint().setStyle(Paint.Style.STROKE);
-            shapeDrawable.setIntrinsicWidth(50);
-            shapeDrawable.setIntrinsicHeight(50);
-            drawableAsteroid = shapeDrawable;
+            sdAsteroid.getPaint().setColor(Color.WHITE);
+            sdAsteroid.getPaint().setStyle(Paint.Style.STROKE);
+            sdAsteroid.setIntrinsicWidth(50);
+            sdAsteroid.setIntrinsicHeight(50);
+            drawableAsteroid = sdAsteroid;
+
+            Path shipPath = new Path();
+            shipPath.moveTo(0.0f, 0.4f);
+            shipPath.lineTo(0.6f, 0.2f);
+            shipPath.lineTo(0.0f, 0.0f);
+            shipPath.lineTo(0.0f, 0.4f);
+            ShapeDrawable sdShip = new ShapeDrawable(
+                    new PathShape(shipPath, 0.6f, 0.6f));
+            sdShip.getPaint().setColor(Color.WHITE);
+            sdShip.getPaint().setStyle(Paint.Style.STROKE);
+            sdShip.setIntrinsicWidth(50);
+            sdShip.setIntrinsicHeight(50);
+            drawableShip = sdShip;
+
             setBackgroundColor(Color.BLACK);
         } else if (pref.getString("graphics", "1").equals("1")){
             drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.asteroid1);
+            drawableShip = ContextCompat.getDrawable(context, R.drawable.ship);
         } else {
             drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.ic_asteroid1);
+            drawableShip = ContextCompat.getDrawable(context, R.drawable.ic_ship);
             setBackgroundColor(Color.BLACK);
         }
 
@@ -76,7 +92,6 @@ public class GameView extends View {
             asteroids.add(asteroid);
         }
 
-        drawableShip = ContextCompat.getDrawable(context, R.drawable.ship);
         ship = new Sprite(this, drawableShip);
     }
 
