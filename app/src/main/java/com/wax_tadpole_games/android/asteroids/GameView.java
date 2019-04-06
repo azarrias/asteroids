@@ -59,8 +59,11 @@ public class GameView extends View {
             shapeDrawable.setIntrinsicHeight(50);
             drawableAsteroid = shapeDrawable;
             setBackgroundColor(Color.BLACK);
-        } else {
+        } else if (pref.getString("graphics", "1").equals("1")){
             drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.asteroid1);
+        } else {
+            drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.ic_asteroid1);
+            setBackgroundColor(Color.BLACK);
         }
 
         asteroids = new ArrayList<Sprite>();

@@ -3,7 +3,7 @@
     <string-array name="typeGraphics">
         <item>vectorial</item>
         <item>bitmap</item>
-        <item>3D</item>
+        <item>VectorDrawable</item>
     </string-array>
     <string-array name="typeGraphicsValues">
         <item>0</item>
