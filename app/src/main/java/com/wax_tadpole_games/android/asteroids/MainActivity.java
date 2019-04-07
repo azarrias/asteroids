@@ -8,7 +8,10 @@ import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        TextView tvAppName = findViewById(R.id.tv_app_name);
+        Animation rotateAndScale = AnimationUtils.loadAnimation(this,
+                R.anim.rotate_and_scale);
+        tvAppName.startAnimation(rotateAndScale);
     }
 
     private void launchHighscores(View view) {
