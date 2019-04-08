@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         Animation alphaTransition = AnimationUtils.loadAnimation(this,
                 R.anim.alpha_transition);
         btnPlay.startAnimation(alphaTransition);
+
+        Animation translateRight = AnimationUtils.loadAnimation(this,
+                R.anim.translate_right);
+        btnAbout.startAnimation(translateRight);
     }
 
     private void launchHighscores(View view) {
