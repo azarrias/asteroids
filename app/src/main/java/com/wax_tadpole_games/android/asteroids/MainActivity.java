@@ -28,6 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView tvAppName = findViewById(R.id.tv_app_name);
+        final Animation rotateAndScale = AnimationUtils.loadAnimation(this,
+                R.anim.rotate_and_scale);
+
+        Animation alphaTransition = AnimationUtils.loadAnimation(this,
+                R.anim.alpha_transition);
+
+        Animation translateRight = AnimationUtils.loadAnimation(this,
+                R.anim.translate_left);
+
+        Animation translateLeft = AnimationUtils.loadAnimation(this,
+                R.anim.translate_right);
+
         btnPlay = findViewById(R.id.btn_start);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAbout.startAnimation(rotateAndScale);
                 launchAbout(null);
             }
         });
@@ -69,18 +83,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView tvAppName = findViewById(R.id.tv_app_name);
-        Animation rotateAndScale = AnimationUtils.loadAnimation(this,
-                R.anim.rotate_and_scale);
         tvAppName.startAnimation(rotateAndScale);
-
-        Animation alphaTransition = AnimationUtils.loadAnimation(this,
-                R.anim.alpha_transition);
         btnPlay.startAnimation(alphaTransition);
-
-        Animation translateRight = AnimationUtils.loadAnimation(this,
-                R.anim.translate_right);
         btnAbout.startAnimation(translateRight);
+        btnSetup.startAnimation(translateLeft);
+        btnExit.startAnimation(translateRight);
+        btnHighscore.startAnimation(translateLeft);
     }
 
     private void launchHighscores(View view) {
