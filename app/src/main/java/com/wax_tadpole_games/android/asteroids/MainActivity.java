@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
         Animation rotateAndScale = AnimationUtils.loadAnimation(this,
                 R.anim.rotate_and_scale);
         tvAppName.startAnimation(rotateAndScale);
+
+        Animation alphaTransition = AnimationUtils.loadAnimation(this,
+                R.anim.alpha_transition);
+        btnPlay.startAnimation(alphaTransition);
     }
 
     private void launchHighscores(View view) {
