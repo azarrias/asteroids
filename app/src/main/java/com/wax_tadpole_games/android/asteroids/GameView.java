@@ -126,7 +126,7 @@ public class GameView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    synchronized protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for(Sprite asteroid : asteroids) {
             asteroid.renderSprite(canvas);
@@ -134,7 +134,7 @@ public class GameView extends View {
         ship.renderSprite(canvas);
     }
 
-    protected void updatePhysics() {
+    synchronized protected void updatePhysics() {
         long now = System.currentTimeMillis();
         if (lastUpdate + UPDATE_PERIOD > now) {
             return;
