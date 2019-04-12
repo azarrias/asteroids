@@ -32,6 +32,20 @@ public class GameView extends View {
     private static final int SHIP_SPIN_STEP = 5;
     private static final float SHIP_ACCELERATION_STEP = 0.5f;
 
+    // Thread and time
+    private GameThread gameThread = new GameThread();
+    private static int UPDATE_PERIOD = 50;
+    private long lastUpdate = 0;
+
+    class GameThread extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                updatePhysics();
+            }
+        }
+    }
+
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         Drawable drawableShip, drawableAsteroid, drawableMissile;
@@ -106,6 +120,9 @@ public class GameView extends View {
                 asteroid.setCenY((int)(Math.random() * height));
             } while (asteroid.distance(ship) < (width + height) / 5);
         }
+
+        lastUpdate = System.currentTimeMillis();
+        gameThread.start();
     }
 
     @Override
@@ -115,5 +132,30 @@ public class GameView extends View {
             asteroid.renderSprite(canvas);
         }
         ship.renderSprite(canvas);
+    }
+
+    protected void updatePhysics() {
+        long now = System.currentTimeMillis();
+        if (lastUpdate + UPDATE_PERIOD > now) {
+            return;
+        }
+
+        double movementFactor = (now - lastUpdate) / UPDATE_PERIOD;
+        lastUpdate = now;
+        ship.setAngle((int)(ship.getAngle() + shipSpin * movementFactor));
+        double velX = ship.getVelX() + shipAcceleration
+                * Math.cos(Math.toRadians(ship.getAngle())) * movementFactor;
+        double velY = ship.getVelY() + shipAcceleration
+                * Math.sin(Math.toRadians(ship.getAngle())) * movementFactor;
+
+        if (Math.hypot(velX, velY) <= SHIP_MAX_VELOCITY) {
+            ship.setVelX(velX);
+            ship.setVelY(velY);
+        }
+        ship.move(movementFactor);
+
+        for (Sprite asteroid : asteroids) {
+            asteroid.move(movementFactor);
+        }
     }
 }
