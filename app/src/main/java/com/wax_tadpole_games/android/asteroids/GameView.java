@@ -12,11 +12,13 @@ import android.graphics.drawable.shapes.PathShape;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// Note: For collecting key events from a view, it must be focusable
 public class GameView extends View {
 
     // Asteroids
@@ -132,6 +134,50 @@ public class GameView extends View {
             asteroid.renderSprite(canvas);
         }
         ship.renderSprite(canvas);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        boolean relevantKey = true;
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_DPAD_UP:
+                shipAcceleration = +SHIP_ACCELERATION_STEP;
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                shipSpin = -SHIP_SPIN_STEP;
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                shipSpin = +SHIP_SPIN_STEP;
+                break;
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+            case KeyEvent.KEYCODE_ENTER:
+                //Shoot missile
+                break;
+            default:
+                relevantKey = false;
+                break;
+        }
+        return relevantKey;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        super.onKeyUp(keyCode, event);
+        boolean relevantKey = true;
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_DPAD_UP:
+                shipAcceleration = 0;
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                shipSpin = 0;
+                break;
+            default:
+                relevantKey = false;
+                break;
+        }
+        return relevantKey;
     }
 
     synchronized protected void updatePhysics() {
