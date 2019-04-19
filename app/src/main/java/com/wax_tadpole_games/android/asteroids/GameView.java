@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -38,6 +39,10 @@ public class GameView extends View {
     private GameThread gameThread = new GameThread();
     private static int UPDATE_PERIOD = 50;
     private long lastUpdate = 0;
+
+    // Touch control
+    private float mX = 0, mY = 0;
+    private boolean shot = false;
 
     class GameThread extends Thread {
         @Override
@@ -178,6 +183,39 @@ public class GameView extends View {
                 break;
         }
         return relevantKey;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
+        float x = event.getX();
+        float y = event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                shot = true;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float dx = Math.abs(x - mX);
+                float dy = Math.abs(y - mY);
+                if (dy < 6 && dx > 6) {
+                    shipSpin = Math.round((x - mX) / 2);
+                    shot = false;
+                } else if (dx < 6 && dy > 6) {
+                    shipAcceleration = Math.abs(Math.round((mY - y) / 25));
+                    shot = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                shipSpin = 0;
+                shipAcceleration = 0;
+                if (shot) {
+                    //Shoot missile
+                }
+                break;
+        }
+        mX = x;
+        mY = y;
+        return true;
     }
 
     synchronized protected void updatePhysics() {
