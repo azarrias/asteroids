@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.PathShape;
+import android.graphics.drawable.shapes.RectShape;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -34,6 +35,12 @@ public class GameView extends View {
     private static final int SHIP_MAX_VELOCITY = 20;
     private static final int SHIP_SPIN_STEP = 5;
     private static final float SHIP_ACCELERATION_STEP = 0.5f;
+
+    // Missile
+    private Sprite missile;
+    private static int MISSILE_VELOCITY_STEP = 12;
+    private boolean missileActive = false;
+    private int missileTime;
 
     // Thread and time
     private GameThread gameThread = new GameThread();
@@ -93,13 +100,22 @@ public class GameView extends View {
             sdShip.setIntrinsicHeight(50);
             drawableShip = sdShip;
 
+            ShapeDrawable sdMissile = new ShapeDrawable(new RectShape());
+            sdMissile.getPaint().setColor(Color.WHITE);
+            sdMissile.getPaint().setStyle(Paint.Style.STROKE);
+            sdMissile.setIntrinsicWidth(15);
+            sdMissile.setIntrinsicHeight(3);
+            drawableMissile = sdMissile;
+
             setBackgroundColor(Color.BLACK);
         } else if (pref.getString("graphics", "1").equals("1")){
             drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.asteroid1);
             drawableShip = ContextCompat.getDrawable(context, R.drawable.ship);
+            drawableMissile = ContextCompat.getDrawable(context, R.drawable.missile1);
         } else {
             drawableAsteroid = ContextCompat.getDrawable(context, R.drawable.ic_asteroid1);
             drawableShip = ContextCompat.getDrawable(context, R.drawable.ic_ship);
+            drawableMissile = ContextCompat.getDrawable(context, R.drawable.ic_missile);
             setBackgroundColor(Color.BLACK);
         }
 
@@ -114,6 +130,7 @@ public class GameView extends View {
         }
 
         ship = new Sprite(this, drawableShip);
+        missile = new Sprite(this, drawableMissile);
     }
 
     @Override
@@ -139,6 +156,9 @@ public class GameView extends View {
             asteroid.renderSprite(canvas);
         }
         ship.renderSprite(canvas);
+        if(missileActive) {
+            missile.renderSprite(canvas);
+        }
     }
 
     @Override
@@ -157,7 +177,7 @@ public class GameView extends View {
                 break;
             case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_ENTER:
-                //Shoot missile
+                enableMissile();
                 break;
             default:
                 relevantKey = false;
@@ -209,13 +229,24 @@ public class GameView extends View {
                 shipSpin = 0;
                 shipAcceleration = 0;
                 if (shot) {
-                    //Shoot missile
+                    enableMissile();
                 }
                 break;
         }
         mX = x;
         mY = y;
         return true;
+    }
+
+    private void enableMissile() {
+        missile.setCenX(ship.getCenX());
+        missile.setCenY(ship.getCenY());
+        missile.setAngle(ship.getAngle());
+        missile.setVelX(Math.cos(Math.toRadians(missile.getAngle())) * MISSILE_VELOCITY_STEP);
+        missile.setVelY(Math.sin(Math.toRadians(missile.getAngle())) * MISSILE_VELOCITY_STEP);
+        missileTime = (int) Math.min(this.getWidth() / Math.abs(missile.getVelX()),
+                this.getHeight() / Math.abs(missile.getVelY())) - 2;
+        missileActive = true;
     }
 
     synchronized protected void updatePhysics() {
